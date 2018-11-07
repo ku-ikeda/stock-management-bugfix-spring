@@ -27,14 +27,7 @@ public class MemberController {
 	private MemberService memberService;
 	
 	
-	/**
-	 * フォームを初期化します.
-	 * @return フォーム
-	 */
-	@ModelAttribute
-	public LoginForm loginForm() {
-		return new LoginForm();
-	}
+	
 	
 	/**
 	 * フォームを初期化します.
@@ -72,7 +65,7 @@ public class MemberController {
 		Member member = new Member();
 		BeanUtils.copyProperties(form, member);
 		memberService.save(member);
-		return "loginForm";
+		return "redirect:/";
 	}
 	
 }
