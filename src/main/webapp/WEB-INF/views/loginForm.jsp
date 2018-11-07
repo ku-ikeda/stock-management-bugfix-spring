@@ -14,7 +14,6 @@
 			    </th>
 			    <td>
 			    	<form:input path="mailAddress" placeholder="Email"/>
-			    	<form:errors path="mailAddress" cssStyle="color:red" element="div"/>
 			    </td>
 			  </tr>
 			  <tr>
@@ -23,7 +22,6 @@
 			    </th>
 			    <td>
 			    	<form:password path="password" placeholder="Password"/>
-			    	<form:errors path="password" cssStyle="color:red" element="div"/>
 			    </td>
 			  </tr>
 			  <tr>

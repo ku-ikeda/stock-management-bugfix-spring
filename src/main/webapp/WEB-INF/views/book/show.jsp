@@ -82,7 +82,8 @@
 					<form action="/book/update" method="post">
 						<input type="text" name="stock"  value="<c:out value="${book.stock}"/>">
 						<input type="hidden" name="id" value="<c:out value="${book.id}"/>">
-						<input class="btn" type="submit" value="更新">
+						<input class="btn" type="submit" value="更新"><br>
+						<a href="${pageContext.request.contextPath}/book/list">戻る</a>
 					</form>
 			    </td>
 			  </tr>
