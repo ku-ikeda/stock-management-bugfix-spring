@@ -30,6 +30,16 @@ public class MemberController {
 	 * @return フォーム
 	 */
 	@ModelAttribute
+	public LoginForm loginForm() {
+		return new LoginForm();
+	}
+	
+	
+	/**
+	 * フォームを初期化します.
+	 * @return フォーム
+	 */
+	@ModelAttribute
 	public MemberForm setUpForm() {
 		return new MemberForm();
 	}
@@ -56,7 +66,7 @@ public class MemberController {
 		Member member = new Member();
 		BeanUtils.copyProperties(form, member);
 		memberService.save(member);
-		return "book/list";
+		return "loginForm";
 	}
 	
 }
