@@ -5,14 +5,19 @@ package jp.co.rakus.stockmanagement.domain;
  * @author rakus
  */
 public class Member {
+	
 	/** id(主キー) */
 	private Integer id;
+	
 	/** 名前 */
 	private String name;
+	
 	/** メールアドレス */
 	private String mailAddress;
+	
 	/** パスワード */
 	private String password;
+	
 	public Member() {}
 	public Member(Integer id, String name, String mailAddress, String password) {
 		super();

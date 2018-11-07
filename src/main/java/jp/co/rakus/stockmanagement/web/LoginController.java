@@ -51,7 +51,8 @@ public class LoginController {
 	 */
 	@RequestMapping(value = "/login")
 	public String login(@Validated LoginForm form,
-			BindingResult result, Model model) {
+			BindingResult result,
+			Model model) {
 		if (result.hasErrors()){
 			return index();
 		}
