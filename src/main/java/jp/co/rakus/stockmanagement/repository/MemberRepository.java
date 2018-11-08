@@ -37,6 +37,16 @@ public class MemberRepository {
 
 	
 	
+	
+	
+	/**
+	 * メールアドレスとパスワードからメンバーを取得.
+	 * （SQLインジェクション対策後）
+	 * 
+	 * @param mailAddress　メールアドレス
+	 * @param password　パスワード
+	 * @return　メンバー情報.メンバーが存在しない場合はnull.
+	 */
 	public Member findByMailAddressAndPassword(String mailAddress, String password) {
 		SqlParameterSource param = new MapSqlParameterSource().addValue("mailAddress",mailAddress).addValue("password",password);
 		Member member = null;
@@ -49,6 +59,7 @@ public class MemberRepository {
 	
 	/**
 	 * メールアドレスとパスワードからメンバーを取得.
+	 * （SQLインジェクション）対策前
 	 * 
 	 * @param mailAddress
 	 *            メールアドレス

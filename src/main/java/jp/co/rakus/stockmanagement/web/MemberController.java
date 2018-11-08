@@ -1,5 +1,7 @@
 package jp.co.rakus.stockmanagement.web;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -48,6 +50,7 @@ public class MemberController {
 	 */
 	@RequestMapping(value = "form")
 	public String form() {
+		
 		return "/member/form";
 	}
 	
@@ -62,13 +65,14 @@ public class MemberController {
 	public String create(@Validated MemberForm form, 
 			BindingResult result,
 			Model model) {
+		
 		if (result.hasErrors()){
 			return form();
 		}
 		
 		String mailAddres =form.getMailAddress();
-		Member memberList = repository.findByEmail(mailAddres);
-		if(memberList == null) {
+		Member member = repository.findByEmail(mailAddres);
+		if(member != null) {
 			ObjectError error = new ObjectError("loginerror","このメールアドレスは既に使われております。");
 			result.addError(error);
 			return form();
