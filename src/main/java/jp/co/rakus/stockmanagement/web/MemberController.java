@@ -73,8 +73,7 @@ public class MemberController {
 		String mailAddres =form.getMailAddress();
 		Member member = repository.findByEmail(mailAddres);
 		if(member != null) {
-			ObjectError error = new ObjectError("loginerror","このメールアドレスは既に使われております。");
-			result.addError(error);
+			result.rejectValue("mailAddress", null,"このメールアドレスは既に使われております。");
 			return form();
 		}
 		Member member1 = new Member();

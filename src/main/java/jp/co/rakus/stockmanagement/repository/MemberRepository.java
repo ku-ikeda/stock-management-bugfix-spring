@@ -103,7 +103,7 @@ public class MemberRepository {
 	
 	
 	public Member findByEmail(String mailAddress) {
-		String sql ="SELECT id, name, mail_address, password FROM members WHERE mail_address = :mail_address;";
+		String sql ="SELECT id, name, mail_address, password FROM members WHERE mail_address = :mailAddress;";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("mailAddress", mailAddress);
 		List <Member> memberList = jdbcTemplate.query(sql, param,MEMBER_ROW_MAPPER);
 				
