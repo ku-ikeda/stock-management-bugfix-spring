@@ -39,8 +39,8 @@
 			     	確認用 パスワード
 			    </th>
 			    <td>
-			    	<form:errors path="password2" cssStyle="color:red" element="div"/>
-			    	<form:password path="password2" placeholder="Password2"/>
+			    	<form:errors path="checkPassword" cssStyle="color:red" element="div"/>
+			    	<form:password path="checkPassword" placeholder="checkPassword"/>
 			    </td>
 			  </tr>
 			  <tr>

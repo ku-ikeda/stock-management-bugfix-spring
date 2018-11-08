@@ -25,8 +25,7 @@ public class MemberForm {
 	private String password;
 
 	/** 確認用パスワード */
-	@NotBlank(message="確認用パスワードを入力してください")
-	private String password2;
+	private String checkPassword;
 
 
 	public String getName() {
@@ -59,13 +58,13 @@ public class MemberForm {
 	}
 
 
-	public String getPassword2() {
-		return password2;
+	public String getCheckPassword() {
+		return checkPassword;
 	}
 
 
-	public void setPassword2(String password2) {
-		this.password2 = password2;
+	public void setCheckPassword(String checkPassword) {
+		this.checkPassword = checkPassword;
 	}
 	
 	
