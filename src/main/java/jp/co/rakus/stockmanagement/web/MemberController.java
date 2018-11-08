@@ -66,9 +66,6 @@ public class MemberController {
 			BindingResult result,
 			Model model) {
 		
-		if (result.hasErrors()){
-			return form();
-		}
 		
 		String mailAddres =form.getMailAddress();
 		Member member = repository.findByEmail(mailAddres);
@@ -76,6 +73,18 @@ public class MemberController {
 			result.rejectValue("mailAddress", null,"このメールアドレスは既に使われております。");
 			return form();
 		}
+		
+		String password = form.getPassword();
+		String password2 = form.getPassword2();
+		if(!(password.equals(password2))) {
+			result.rejectValue("password", null,"同じパスワードを入力してください。");
+			return form();
+		}
+		
+		if (result.hasErrors()){
+			return form();
+		}
+		
 		Member member1 = new Member();
 		BeanUtils.copyProperties(form, member1);
 		memberService.save(member1);

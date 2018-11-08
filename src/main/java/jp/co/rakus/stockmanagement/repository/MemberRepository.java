@@ -102,6 +102,12 @@ public class MemberRepository {
 
 	
 	
+	/**
+	 * DBで登録されていないメールアドレスを登録する.
+	 * 
+	 * @param mailAddress　メールアドレス
+	 * @return　新規のメールアドレス情報
+	 */
 	public Member findByEmail(String mailAddress) {
 		String sql ="SELECT id, name, mail_address, password FROM members WHERE mail_address = :mailAddress;";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("mailAddress", mailAddress);
@@ -114,6 +120,7 @@ public class MemberRepository {
 			return null;
 			}
 		}
+	
 		
 	}
 
