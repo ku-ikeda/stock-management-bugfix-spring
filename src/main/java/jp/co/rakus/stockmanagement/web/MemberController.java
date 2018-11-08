@@ -6,11 +6,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.rakus.stockmanagement.domain.Member;
+import jp.co.rakus.stockmanagement.repository.MemberRepository;
 import jp.co.rakus.stockmanagement.service.MemberService;
 
 /**
@@ -26,6 +28,8 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
+	@Autowired
+	private MemberRepository repository;
 	
 	
 	
@@ -62,9 +66,16 @@ public class MemberController {
 			return form();
 		}
 		
-		Member member = new Member();
-		BeanUtils.copyProperties(form, member);
-		memberService.save(member);
+		String mailAddres =form.getMailAddress();
+		Member memberList = repository.findByEmail(mailAddres);
+		if(memberList == null) {
+			ObjectError error = new ObjectError("loginerror","このメールアドレスは既に使われております。");
+			result.addError(error);
+			return form();
+		}
+		Member member1 = new Member();
+		BeanUtils.copyProperties(form, member1);
+		memberService.save(member1);
 		return "redirect:/";
 	}
 	

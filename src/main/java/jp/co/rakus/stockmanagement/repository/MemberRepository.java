@@ -40,23 +40,11 @@ public class MemberRepository {
 	public Member findByMailAddressAndPassword(String mailAddress, String password) {
 		SqlParameterSource param = new MapSqlParameterSource().addValue("mailAddress",mailAddress).addValue("password",password);
 		Member member = null;
-		//try {
+		
 		member = jdbcTemplate.queryForObject("SELECT id,name,mail_address,password"
-				+ " FROM members WHERE mail_address= :mail_address and password= :password",param, MEMBER_ROW_MAPPER);
+				+ " FROM members WHERE mail_address= :mailAddress and password= :password",param, MEMBER_ROW_MAPPER);
 			return member;
-		//}catch (DataAccessException e) {
-			//e.printStackTrace();
-			//return null;
-		//}
-	
-	
-	}
-	
-	
-	
-	
-	
-	
+			}
 	
 	
 	/**
@@ -102,15 +90,20 @@ public class MemberRepository {
 	}
 
 	
-	/*public Member findByEmail(String mailAddress) {
-		SqlParameterSource param = new BeanPropertySqlParameterSource(mailAddress);
-		String sql = "SELECT mail_address FROM members where mail_address = :mail_address;";
-		Member member = (Member) jdbcTemplate.query(sql, param,MEMBER_ROW_MAPPER);
-		if(member.getMailAddress() == null) {
+	
+	public Member findByEmail(String mailAddress) {
+		String sql ="SELECT id, name, mail_address, password FROM members WHERE mail_address = :mail_address;";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("mailAddress", mailAddress);
+		List <Member> memberList = jdbcTemplate.query(sql, param,MEMBER_ROW_MAPPER);
+				
+		if(memberList.size()!= 0) {
+			Member member = memberList.get(0);			
 			return member;
 		}else {
+			return null;
+			}
+		}
 		
-		return null;
 	}
-}*/
-}
+
+
